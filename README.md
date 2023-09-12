@@ -28,7 +28,7 @@
 | price              | integer    | null: false                    |
 | item_info          | string     | null: false                    |
 | item_category      | string     | null: false                    |
-| seles_status       | string     | null: false                    |
+| sales_status       | string     | null: false                    |
 | shipping_status    | integer    | null: false                    |
 | prefecture         | string     | null: false                    |
 | scheduled_delivery | string     | null: false                    |
@@ -37,11 +37,27 @@
 
 ### Association
 
-- belongs_to :users
+- belongs_to :user
 - has_one :order
+- has_one :address
 
 
 ## orders テーブル
+
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| user             | references | null: false, foreign_key: true |
+| item             | references | null: false, foreign_key: true |
+
+
+### Association
+
+- has_one :item
+- has_one :address
+- belongs_to :user
+
+
+## Addresses テーブル
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
@@ -55,4 +71,5 @@
 ### Association
 
 - has_one :item
-- belongs_to :users
+- belongs_to :user
+- has_one :order
