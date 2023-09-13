@@ -12,8 +12,5 @@ class User < ApplicationRecord
     validates :first_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'は全角カタカナ' }
     validates :birthday
 
-  with_options uniqueness: true do
-    validates :email
     end
   end
-end
