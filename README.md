@@ -35,7 +35,6 @@
 
 ### Association
 
-- belongs_to :item
 - belongs_to :user
 - has_one :order
 
@@ -52,17 +51,20 @@
 
 - has_one :address
 - belongs_to :user
+- belongs_to :item
 
 
 ## Addresses テーブル
 
+| Column           | Type          | Options                         |
+| ---------------- | ------------- | ------------------------------- |
 | postcode         | string        | null: false                     |
-| prefecture_id    | integer       |  null: false                    |
+| prefecture_id    | integer       | null: false                     |
 | city             | string        | null: false                     |
-| block            | string        |  null: false                    |
+| block            | string        | null: false                     |
 | building         | string        |                                 |
-| phone_number     | string        |  null: false                    |
-| order            | references    |  null: false,  foreign_key: true|
+| phone_number     | string        | null: false                     |
+| order            | references    | null: false,  foreign_key: true |
 
 ### Association
 
