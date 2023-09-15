@@ -24,5 +24,3 @@ class Item < ApplicationRecord
     end
 
 end
-
-#TODO:has_one_attached ⇒ imageMagickで画像ファイルの紐づけ
