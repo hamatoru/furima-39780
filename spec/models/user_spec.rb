@@ -7,12 +7,11 @@ RSpec.describe User, type: :model do
 
   describe 'ユーザー新規登録' do
 
-
   context 'ユーザー新規登録できるとき' do
     it '全ての項目が入力されていると登録できる' do
     expect(@user).to be_valid
+    end
   end
-end
 
   context 'ユーザー新規登録できないとき' do
     it 'nicknameが空では登録できない' do
@@ -110,5 +109,5 @@ end
       expect(@user.errors.full_messages).to include ("First name kana is invalid. Input full-width katakana characters")
     end
   end
-end
+  end
 end
