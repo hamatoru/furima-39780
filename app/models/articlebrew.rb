@@ -1,0 +1,2 @@
+class Articlebrew < ApplicationRecord
+end
