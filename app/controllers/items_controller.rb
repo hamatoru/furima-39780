@@ -34,7 +34,6 @@ class ItemsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-end
 
 private
 def item_params
@@ -48,6 +47,7 @@ end
 def item_if
   unless @item.user == current_user
   redirect_to root_path
+end
 end
 
 end
