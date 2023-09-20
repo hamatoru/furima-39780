@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
+  before_action :set_key, only: [:index, :create]
 
   def index
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @order_address = OrderAddress.new
     if current_user == @item.user || !@item.order.nil?
       redirect_to root_path
@@ -17,14 +17,13 @@ class OrdersController < ApplicationController
       @order_address.save
       return redirect_to root_path
     else
-      gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render 'index', status: :unprocessable_entity
     end
   end
 
   private
   def order_params
-    params.require(:order_address).permit(:postcode, :prefecture_id, :city, :phone_number, :block).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:order_address).permit(:postcode, :prefecture_id, :city, :phone_number, :block, :building).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def pay_item
@@ -40,4 +39,8 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
+  def set_key
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+  end
+  
 end
