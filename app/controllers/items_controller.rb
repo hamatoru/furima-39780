@@ -50,11 +50,9 @@ def item_find
 end
 
 def item_if
-  unless @item.user_id == current_user.id || @item.order.nil?
-  redirect_to root_path
-  else current_user != @item.user || !@item.order.nil?
+  if current_user != @item.user || !@item.order.nil?
     redirect_to root_path
-end
+  end
 end
 
 end
